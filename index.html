@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>huebi.dev</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: hsl(199, 100%, 55%);
+            --main: hsl(0, 0%, 87%);
+            --dark: hsl(0, 0%, 33%);
+        }
+
+        body {
+            font-family: system-ui;
+            background-color: hsl(0, 0%, 8%);
+            color: var(--main);
+
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--main);
+            border-bottom: 2px solid var(--blue);
+        }
+
+        a:hover {
+            color: var(--blue);
+        }
+
+        p:first-child {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        p:not(:first-child) {
+            color: var(--dark);
+            line-height: 1.5;
+        }
+
+        span {
+            color: var(--blue);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <p><span>&gt;</span> huebi.dev</p>
+        <p>Oh hey, I’m Alex. This site is currently under construction.</p>
+        <p>There is more to see at my old address: <a href="https://huebicode.com/">huebicode.com</a></p>
+    </div>
+</body>
+
+</html>
