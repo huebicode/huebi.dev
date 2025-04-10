@@ -5,70 +5,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>huebi.dev</title>
-
     <style>
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-            --blue: hsl(199, 100%, 55%);
-            --main: hsl(0, 0%, 87%);
-            --dark: hsl(0, 0%, 55%);
+            --bg-color: hsl(30, 5%, 11%);
+            --bg-color-darker: hsl(30, 5%, 7%);
+            --fg-color: hsl(210, 8%, 88%);
+            --fg-color-darker: hsl(210, 8%, 54%);
+            --fg-color-darkest: hsl(210, 8%, 33%);
+            --color-blue: hsl(206, 92%, 70%);
+
+            --spacing-small: 1rem;
+            --spacing-large: 6rem;
+        }
+
+        html {
+            background-color: var(--bg-color);
+            color: var(--fg-color);
+            font-family: system-ui;
+            line-height: 1.6;
         }
 
         body {
-            font-family: system-ui;
-            background-color: hsl(0, 0%, 8%);
-            color: var(--main);
+            display: grid;
+            grid-template-columns: 1fr min(60ch, 90%) 1fr;
 
+            #ukraine-banner,
+            header {
+                grid-column: 1 / -1;
+            }
+
+            header {
+                display: grid;
+                margin-top: calc((var(--spacing-large) * 1.6));
+                margin-bottom: var(--spacing-large);
+
+                h1,
+                p {
+                    font-size: x-large;
+                }
+
+                h1 {
+                    color: white;
+                }
+
+                p {
+                    color: var(--fg-color-darkest);
+                    font-weight: bold;
+                    line-height: 1;
+                }
+
+                #logo {
+                    width: min(76ch, 90%);
+                    justify-self: center;
+                }
+            }
+
+            main,
+            footer {
+                grid-column: 2 / 3;
+            }
         }
 
-        #container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100svh;
-            overflow: hidden;
+        main {
+            p:first-of-type {
+                font-weight: bold;
+            }
+        }
+
+        footer {
+            margin-block: calc((var(--spacing-large) / 1.6));
+            font-size: smaller;
+        }
+
+        ul {
+            padding-left: var(--spacing-small)
+        }
+
+        ul li::marker {
+            color: var(--fg-color-darkest);
+        }
+
+        p:not(:last-of-type) {
+            margin-bottom: var(--spacing-small);
         }
 
         a {
-            text-decoration: none;
-            color: var(--main);
-            border-bottom: 2px solid var(--blue);
+            color: white;
+            text-decoration-color: var(--color-blue);
+            text-underline-offset: 3px;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: var(--color-blue);
+            }
         }
 
-        a:hover {
-            color: var(--blue);
+        a[href^="http"]::after {
+            content: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 24 24" fill="%234D4D4E" xmlns="http://www.w3.org/2000/svg"><path d="M8.00008 5.00005L19.0001 5.00005V16L17.0001 16L17.0001 8.41426L7.00008 18.4143L5.58586 17L15.5859 7.00005L8.00008 7.00005L8.00008 5.00005Z" fill="%238F8F8F" /></svg>');
+            display: inline-block;
+            position: relative;
+            top: 0.2em;
+            transition: filter 0.3s ease;
         }
 
-        p:first-child {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
+        a[href^="http"]:hover::after {
+            filter: sepia(100%) hue-rotate(180deg) saturate(500%);
         }
 
-        p:not(:first-child) {
-            color: var(--dark);
-            line-height: 1.5;
+        #ukraine-banner {
+            background-color: var(--bg-color-darker);
+            color: var(--fg-color-darker);
+            font-size: smaller;
             text-align: center;
-            font-size: .8rem;
-        }
+            padding: 0.7rem 0.5rem;
 
-        span {
-            color: var(--blue);
+            p::before {
+                content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="%23005BBB" d="M32 5H4C1.791 5 0 6.791 0 9v9h36V9c0-2.209-1.791-4-4-4z"/><path fill="%23FFD500" d="M36 27c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4v-9h36v9z"/></svg>');
+                display: inline-block;
+                position: relative;
+                width: 1em;
+                height: 1em;
+                top: 0.15em;
+                margin-right: 0.5em;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div id="container">
-        <p><span>&gt;</span> huebi.dev</p>
-        <p>Oh hey, I’m Alex. This site is currently under construction.</p>
-    </div>
+    <section id="ukraine-banner">
+        <p><span id="warDays"></span>I stand with Ukraine and the truth that Russia is an invader—please <a href="https://u24.gov.ua/">support the people of Ukraine</a> in their struggle.</p>
+    </section>
+
+    <header>
+        <div id="logo">
+            <h1>huebi.dev</h1>
+            <p>Alexander Hübert</p>
+        </div>
+    </header>
+
+    <main>
+        <p>Oh hey, I’m Alex!</p>
+        <p>I’m a solo developer from Germany currently pursuing an M.Sc. in Digital Forensics. <br>I build on Linux mostly with Rust and JavaScript, often powered by Tauri, Svelte, and a cup of tea.</p>
+    </main>
+
+    <footer>
+        <ul>
+            <li><a href="https://github.com/huebicode">GitHub</a></li>
+            <li><a href="https://bsky.app/profile/huebi.dev">Bluesky</a></li>
+        </ul>
+    </footer>
+
+    <script>
+        function updateWarDays() {
+            const invasionDate = new Date('2022-02-24')
+            const today = new Date()
+            const diffTime = today - invasionDate
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+            document.getElementById('warDays').textContent = `${diffDays} days of war! `
+        }
+        updateWarDays();
+    </script>
 </body>
 
 </html>
