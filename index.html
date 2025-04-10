@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>huebi.dev</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
         *,
         *::before,
@@ -15,12 +16,14 @@
         }
 
         :root {
-            --bg-color: hsl(30, 5%, 11%);
-            --bg-color-darker: hsl(30, 5%, 7%);
-            --fg-color: hsl(210, 8%, 88%);
-            --fg-color-darker: hsl(210, 8%, 54%);
-            --fg-color-darkest: hsl(210, 8%, 33%);
-            --color-blue: hsl(206, 92%, 70%);
+            --bg-color: rgb(30, 30, 30);
+            --bg-color-darker: rgb(19, 19, 19);
+
+            --fg-color: rgb(225, 225, 225);
+            --fg-color-darker: rgb(139, 139, 139);
+            --fg-color-darkest: rgb(86, 86, 86);
+
+            --color-blue: rgb(105, 185, 250);
 
             --spacing-small: 1rem;
             --spacing-large: clamp(3rem, calc((100vh - 500px) * 0.1), 7rem);
@@ -93,7 +96,7 @@
             padding-left: var(--spacing-small);
 
             li {
-                padding-block: .1em;
+                padding-block: .15em;
             }
         }
 
@@ -179,10 +182,10 @@
             const invasionDate = new Date('2022-02-24')
             const today = new Date()
             const diffTime = today - invasionDate
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1 // +1 to include today
             document.getElementById('warDays').textContent = `${diffDays} days of war! `
         }
-        updateWarDays();
+        updateWarDays()
     </script>
 </body>
 
