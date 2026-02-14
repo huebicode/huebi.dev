@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>huebi.dev</title>
+    <meta name="description" content="Alexander Hübert is an Independent Developer and Digital Forensics Analyst who loves the open web and builds on Linux, primarily using Rust.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
         *,
@@ -16,127 +17,60 @@
         }
 
         :root {
-            --bg-color: rgb(30, 30, 30);
-            --bg-color-darker: rgb(19, 19, 19);
-
-            --fg-color: rgb(225, 225, 225);
-            --fg-color-darker: rgb(139, 139, 139);
-            --fg-color-darkest: rgb(86, 86, 86);
-
-            --color-blue: rgb(105, 185, 250);
-
-            --spacing-small: 1rem;
-            --spacing-large: clamp(3rem, calc((100vh - 500px) * 0.1), 7rem);
-        }
-
-        html {
-            background-color: var(--bg-color);
-            color: var(--fg-color);
-            font-family: system-ui;
-            line-height: 1.6;
+            --spacing-v: 5rem;
         }
 
         body {
             display: flex;
             flex-direction: column;
-            height: 100svh;
+            align-items: center;
+            min-height: 100vh;
+            font-family: system-ui, sans-serif;
+            line-height: 1.4;
+            background-color: rgb(246, 245, 244);
+            color: rgb(13,13,13);
+            padding: 1.5rem;
         }
 
-        #wrapper {
-            display: grid;
-            grid-template-columns: 1fr min(60ch, 90%) 1fr;
-            margin-top: var(--spacing-large);
-
-            header {
-                grid-column: 1 / -1;
-                display: grid;
-                margin-bottom: var(--spacing-large);
-
-                h1,
-                p {
-                    font-size: x-large;
-                }
-
-                h1 {
-                    color: white;
-                }
-
-                p {
-                    color: var(--fg-color-darkest);
-                    font-weight: bold;
-                    line-height: 1;
-                }
-
-                #logo {
-                    width: min(76ch, 90%);
-                    justify-self: center;
-                }
-            }
-
-            main,
-            footer {
-                grid-column: 2 / 3;
-            }
+        body::before,
+        body::after {
+            content: "";
+            flex-grow: 1;
         }
 
-        main {
-            margin-top: clamp(0rem, calc((100vh - 500px) * 0.3), 20rem);
-
-            p:first-of-type {
-                font-weight: bold;
-            }
+        body::after {
+            flex-grow: 2;
         }
 
-        footer {
-            margin-block: calc((var(--spacing-large) / 1.6));
-            font-size: smaller;
+        h1 {
+            font-size: 1.7rem;
+            line-height: 1;
         }
 
-        ul {
-            padding-left: var(--spacing-small);
-
-            li {
-                padding-block: .15em;
-            }
-        }
-
-        ul li::marker {
-            color: var(--fg-color-darkest);
-        }
-
-        p:not(:last-of-type) {
-            margin-bottom: var(--spacing-small);
-        }
-
-        a {
-            color: white;
-            text-decoration-color: var(--color-blue);
-            text-underline-offset: 3px;
-            transition: color 0.3s ease;
-
-            &:hover {
-                color: var(--color-blue);
-            }
+        h2 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
         }
 
         a[href^="http"]::after {
-            content: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 24 24" fill="%234D4D4E" xmlns="http://www.w3.org/2000/svg"><path d="M8.00008 5.00005L19.0001 5.00005V16L17.0001 16L17.0001 8.41426L7.00008 18.4143L5.58586 17L15.5859 7.00005L8.00008 7.00005L8.00008 5.00005Z" fill="%238F8F8F" /></svg>');
+            content: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.00008 5.00005L19.0001 5.00005V16L17.0001 16L17.0001 8.41426L7.00008 18.4143L5.58586 17L15.5859 7.00005L8.00008 7.00005L8.00008 5.00005Z" fill="%238F8F8F" /></svg>');
             display: inline-block;
             position: relative;
-            top: 0.2em;
-            transition: filter 0.3s ease;
+            top: 0.3em;
+            margin-block: -5px;
         }
 
-        a[href^="http"]:hover::after {
-            filter: sepia(100%) hue-rotate(180deg) saturate(500%);
+        ul {
+            list-style: none;
+            line-height: 1.5;
         }
 
         #ukraine-banner {
-            background-color: var(--bg-color-darker);
-            color: var(--fg-color-darker);
+            order: -1;
+            justify-self: center;
             font-size: smaller;
             text-align: center;
-            padding: 0.7rem 0.5rem;
+            margin-bottom: var(--spacing-v);
 
             p::before {
                 content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="%23005BBB" d="M32 5H4C1.791 5 0 6.791 0 9v9h36V9c0-2.209-1.791-4-4-4z"/><path fill="%23FFD500" d="M36 27c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4v-9h36v9z"/></svg>');
@@ -146,6 +80,23 @@
                 height: 1em;
                 top: 0.15em;
                 margin-right: 0.5em;
+            }
+        }
+
+        #wrapper {
+            margin-inline: auto;
+
+            header {
+                margin-bottom: var(--spacing-v);
+            }
+
+            main, footer {
+                max-width: 60ch;
+                margin-inline: auto;
+            }
+
+            main {
+                margin-bottom: var(--spacing-v);
             }
         }
     </style>
@@ -160,13 +111,14 @@
         <header>
             <div id="logo">
                 <h1>huebi.dev</h1>
-                <p>- Alexander Hübert -</p>
+                <p>Alexander Hübert</p>
             </div>
         </header>
 
         <main>
-            <p>Oh hey, I’m Alex!</p>
-            <p>I’m a solo developer from Germany currently pursuing an M.Sc. in Digital Forensics. I build on Linux mostly with Rust and JavaScript, often powered by Tauri, Svelte, and a cup of tea.</p>
+            <h2>Oh hey, I’m Alex!</h2>
+            <p>I’m an <b>Independent Developer</b> and <b>Digital Forensics Analyst</b> from Germany.</p>
+            <p>I love the open web and build on Linux, primarily using Rust.</p>
         </main>
 
         <footer>
@@ -183,7 +135,7 @@
             const today = new Date()
             const diffTime = today - invasionDate
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1 // +1 to include today
-            document.getElementById('warDays').textContent = `${diffDays} days of war! `
+            document.getElementById('warDays').innerHTML = `<b>${diffDays} days of war!</b> `
         }
         updateWarDays()
     </script>
