@@ -18,6 +18,8 @@
 
         :root {
             --spacing-v: 5rem;
+            --spacing-p: 1rem;
+            --default-font-size: 1rem;
         }
 
         body {
@@ -43,25 +45,30 @@
         }
 
         h1 {
-            font-size: 1.7rem;
+            font-size: calc(var(--default-font-size) * 1.75);
             line-height: 1;
         }
 
         h2 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            font-size: var(--default-font-size);
+            margin-top: var(--spacing-p);
+            line-height: 1.5;
+        }
+
+        p#greeting {
+            margin-block: var(--spacing-p);
         }
 
         a[href^="http"]::after {
             content: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.00008 5.00005L19.0001 5.00005V16L17.0001 16L17.0001 8.41426L7.00008 18.4143L5.58586 17L15.5859 7.00005L8.00008 7.00005L8.00008 5.00005Z" fill="%238F8F8F" /></svg>');
             display: inline-block;
             position: relative;
-            top: 0.3em;
+            top: 0.1em;
             margin-block: -5px;
         }
 
         ul {
-            list-style: none;
+            padding-left: 1.25rem;
             line-height: 1.5;
         }
 
@@ -70,7 +77,6 @@
             justify-self: center;
             font-size: smaller;
             text-align: center;
-            margin-bottom: var(--spacing-v);
 
             p::before {
                 content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="%23005BBB" d="M32 5H4C1.791 5 0 6.791 0 9v9h36V9c0-2.209-1.791-4-4-4z"/><path fill="%23FFD500" d="M36 27c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4v-9h36v9z"/></svg>');
@@ -90,22 +96,22 @@
                 margin-bottom: var(--spacing-v);
             }
 
+            main {
+                margin-block: var(--spacing-v);
+            }
+
             main, footer {
                 max-width: 58ch;
                 margin-inline: auto;
-            }
-
-            main {
-                margin-bottom: var(--spacing-v);
             }
         }
     </style>
 </head>
 
 <body>
-    <section id="ukraine-banner">
+    <aside id="ukraine-banner">
         <p><span id="warDays"></span>I stand with Ukraine and the truth that Russia is an invader—please <a href="https://u24.gov.ua/">support the people of Ukraine</a></p>
-    </section>
+    </aside>
 
     <div id="wrapper">
         <header>
@@ -116,14 +122,19 @@
         </header>
 
         <main>
-            <h2>Oh hey, I’m Alex!</h2>
+            <p id="greeting"><b>Oh hey, I’m Alex!</b></p>
             <p>I’m an <b>Independent Developer</b> and <b>Digital Forensics Analyst</b> from Germany. I love the open web and build on Linux, primarily using Rust.</p>
         </main>
 
         <footer>
+            <h2>Research & Development</h2>
             <ul>
-                <li><a href="https://github.com/huebicode">GitHub</a></li>
+                <li>Master’s Thesis: <a href="https://github.com/huebicode/leveldb-parser/blob/main/Masterthesis%20LevelDB.pdf">Development of a Forensic Parser for LevelDB</a></li>
+            </ul>
+            <h2>Connect</h2>
+            <ul>
                 <li><a href="https://bsky.app/profile/huebi.dev">Bluesky</a></li>
+                <li><a href="https://github.com/huebicode">GitHub</a></li>
             </ul>
         </footer>
     </div>
