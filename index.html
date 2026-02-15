@@ -17,6 +17,8 @@
         }
 
         :root {
+            --bg: rgb(246, 245, 244);
+            --fg: rgb(13,13,13);
             --spacing-v: 5rem;
             --spacing-p: 1rem;
             --default-font-size: 1rem;
@@ -29,8 +31,8 @@
             min-height: 100vh;
             font-family: system-ui, sans-serif;
             line-height: 1.4;
-            background-color: rgb(246, 245, 244);
-            color: rgb(13,13,13);
+            background-color: var(--bg);
+            color: var(--fg);
             padding: 1.5rem;
         }
 
@@ -45,9 +47,19 @@
         }
 
         h1 {
-            font-size: calc(var(--default-font-size) * 1.75);
+            font-size: calc(var(--default-font-size) * 1.6);
             line-height: 1;
             margin-top: var(--spacing-p);
+            background-color: var(--fg);
+            color: var(--bg);
+            padding: 0.3rem;
+            border-radius: 0.3rem;
+            display: inline-block;
+            margin-left: -0.3rem;
+        }
+
+        h1::after {
+            content: "_";
         }
 
         h2 {
