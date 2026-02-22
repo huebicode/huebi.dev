@@ -8,6 +8,11 @@
     <meta name="description" content="Alexander Hübert is an Independent Developer and Digital Forensics Analyst who loves the open web and builds on Linux, primarily using Rust.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script>
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
     <noscript>
         <style>button#theme-switch { display: none; }</style>
     </noscript>
@@ -15,7 +20,25 @@
 
 <body>
     <aside id="ukraine-banner">
-        <p><span id="warDays"></span>I stand with Ukraine and the truth that Russia is an invader—please <a href="https://u24.gov.ua/">support the people of Ukraine</a></p>
+        <p><span id="warDays"></span>
+            <script>
+                (function() {
+                    const invasionDate = new Date('2022-02-24');
+                    const today = new Date();
+                    let years = today.getUTCFullYear() - invasionDate.getUTCFullYear();
+                    const anniversary = new Date(invasionDate);
+                    anniversary.setUTCFullYear(today.getUTCFullYear());
+                    if (today < anniversary) {
+                        years--;
+                        anniversary.setUTCFullYear(today.getUTCFullYear() - 1);
+                    }
+                    const diffTime = today - anniversary;
+                    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                    document.getElementById('warDays').innerHTML = `<b>${years} years and ${days} days of war!</b> `;
+                })();
+            </script>
+            I stand with Ukraine and the truth that Russia is an invader—please <a href="https://u24.gov.ua/">support the people of Ukraine</a>
+        </p>
     </aside>
 
     <div id="wrapper">
@@ -24,6 +47,7 @@
                 <div id="logo-bar">
                     <a href="/"><h1>huebi.dev</h1></a>
                     <button id="theme-switch" aria-label="Toggle theme">
+                        <!-- Icons from Lucide (ISC & MIT License): https://lucide.dev/license -->
                         <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
                         <svg class="moon-icon" style="display:none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
                     </button>
@@ -49,8 +73,6 @@
             </ul>
         </footer>
     </div>
-
-    <script src="script.js"></script>
 </body>
 
 </html>
