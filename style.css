@@ -53,6 +53,7 @@ body {
 }
 
 h1 {
+    --padding: 0.2rem;
     display: inline-block;
     font-size: calc(var(--default-font-size) * 1.6);
     line-height: 1;
@@ -60,8 +61,8 @@ h1 {
     background-color: var(--fg);
     border-color: transparent;
     border-radius: var(--default-border-radius);
-    padding: 0.2rem;
-    margin-left: -0.3rem;
+    padding: var(--padding);
+    margin-left: calc(var(--padding) * -1);
 }
 
 h2 {
