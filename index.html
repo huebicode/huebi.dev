@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>huebi.dev</title>
+    <title>huebi.dev - Alexander Hübert</title>
     <meta name="description" content="Alexander Hübert is an Independent Developer and Digital Forensics Analyst who loves the open web and builds on Linux, primarily using Rust.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
@@ -33,7 +33,7 @@
                         anniversary.setUTCFullYear(today.getUTCFullYear() - 1);
                     }
                     const diffTime = today - anniversary;
-                    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
                     document.getElementById('warDays').innerHTML = `<b>${years} years and ${days} days of war!</b> `;
                 })();
             </script>
@@ -52,13 +52,12 @@
                         <svg class="moon-icon" style="display:none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
                     </button>
                 </div>
-                <p>Alexander Hübert</p>
             </div>
         </header>
 
         <main>
-            <p id="greeting"><b>Oh hey,</b></p>
-            <p>I’m an <b>Independent Developer</b> and <b>Digital Forensics Analyst</b> from Germany. I love the open web and build on Linux, primarily using Rust.</p>
+            <p>Hi, I’m <b>Alexander Hübert</b></p>
+            <p><b>Independent Developer</b> and <b>Digital Forensics Analyst</b> from Germany, who loves the open web and builds on Linux, primarily using Rust.</p>
         </main>
 
         <footer>
