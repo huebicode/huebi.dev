@@ -1,7 +1,7 @@
 // Theme Toggle Logic
 const themeBtn = document.getElementById('theme-switch');
-const sunIcon = themeBtn.querySelector('.sun-icon');
-const moonIcon = themeBtn.querySelector('.moon-icon');
+const sunIcon = themeBtn.querySelector('#sun-icon');
+const moonIcon = themeBtn.querySelector('#moon-icon');
 
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
@@ -19,3 +19,15 @@ themeBtn.addEventListener('click', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     setTheme(currentTheme === 'dark' ? 'light' : 'dark');
 });
+
+// Sync TOC open state with layout
+const tocDetails = document.querySelector('nav#toc details');
+if (tocDetails) {
+    const mediaQuery = window.matchMedia('(min-width: 800px)');
+    const handleScreenChange = (e) => {
+        // Close on mobile, open on desktop
+        e.matches ? tocDetails.setAttribute('open', '') : tocDetails.removeAttribute('open');
+    };
+    mediaQuery.addEventListener('change', handleScreenChange);
+    handleScreenChange(mediaQuery);
+}

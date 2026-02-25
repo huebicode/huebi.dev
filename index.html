@@ -1,77 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>huebi.dev - Alexander Hübert</title>
-    <meta name="description" content="Alexander Hübert is an Independent Developer and Digital Forensics Analyst who loves the open web and builds on Linux, primarily using Rust.">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <script>
-        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    </script>
-    <noscript>
-        <style>button#theme-switch { display: none; }</style>
-    </noscript>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>huebi.dev - Alexander Hübert</title>
+        <meta name="description" content="Alexander Hübert is an Independent Developer and Digital Forensics Analyst who loves the open web and builds on Linux, primarily using Rust.">
+        <link rel="icon" href="favicon.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+        <script>
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        </script>
+        <noscript>
+            <style>
+                button#theme-switch {
+                    display: none;
+                }
+            </style>
+        </noscript>
+    </head>
 
-<body>
-    <aside id="ukraine-banner">
-        <p><span id="warDays"></span>
-            <script>
-                (function() {
-                    const invasionDate = new Date('2022-02-24');
-                    const today = new Date();
-                    let years = today.getUTCFullYear() - invasionDate.getUTCFullYear();
-                    const anniversary = new Date(invasionDate);
-                    anniversary.setUTCFullYear(today.getUTCFullYear());
-                    if (today < anniversary) {
-                        years--;
-                        anniversary.setUTCFullYear(today.getUTCFullYear() - 1);
-                    }
-                    const diffTime = today - anniversary;
-                    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                    document.getElementById('warDays').innerHTML = `<b>${years} years and ${days} days of war!</b> `;
-                })();
-            </script>
-            I stand with Ukraine and the truth that Russia is an invader—please <a href="https://u24.gov.ua/" target="_blank" rel="noreferrer">support the people of Ukraine</a>
-        </p>
-    </aside>
+    <body>
+        <aside id="ukraine-banner">
+            <p><b id="warDays"></b>
+                <script>
+                    (function () {
+                        const invasionDate = new Date('2022-02-24');
+                        const today = new Date();
+                        let years = today.getUTCFullYear() - invasionDate.getUTCFullYear();
+                        const anniversary = new Date(invasionDate);
+                        anniversary.setUTCFullYear(today.getUTCFullYear());
+                        if (today < anniversary) {
+                            years--;
+                            anniversary.setUTCFullYear(today.getUTCFullYear() - 1);
+                        }
+                        const diffTime = today - anniversary;
+                        const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-    <div id="wrapper">
-        <header>
-            <div id="logo">
-                <div id="logo-bar">
-                    <a href="/"><h1>huebi.dev</h1></a>
-                    <button id="theme-switch" aria-label="Toggle theme">
-                        <!-- Icons from Lucide (ISC & MIT License): https://lucide.dev/license -->
-                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-                        <svg class="moon-icon" style="display:none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
-                    </button>
-                </div>
-            </div>
-        </header>
+                        let text = '';
+                        if (years > 0) text += `${years} year${years === 1 ? '' : 's'}`;
+                        if (days > 0) {
+                            if (text) text += ' and ';
+                            text += `${days} day${days === 1 ? '' : 's'}`;
+                        }
+                        document.getElementById('warDays').innerHTML = `<b>${text} of war!</b> `;
+                    })();
+                </script>
+                I stand with Ukraine and the truth that Russia is an invader—please <a href="https://u24.gov.ua/" target="_blank" rel="noreferrer">support the people of Ukraine</a>
+            </p>
+        </aside>
 
-        <main>
-            <p>Hi, I’m <b>Alexander Hübert</b></p>
-            <p><b>Independent Developer</b> and <b>Digital Forensics Analyst</b> from Germany, who loves the open web and builds on Linux, primarily using Rust.</p>
-        </main>
+        <div id="wrapper">
+            <header id="logo">
+                <a href="/">
+                    <h1>huebi.dev</h1>
+                </a>
+                <button id="theme-switch" aria-label="Toggle theme">
+                    <!-- Icons from Lucide (ISC & MIT License): https://lucide.dev/license -->
+                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4" />
+                        <path d="M12 2v2" />
+                        <path d="M12 20v2" />
+                        <path d="m4.93 4.93 1.41 1.41" />
+                        <path d="m17.66 17.66 1.41 1.41" />
+                        <path d="M2 12h2" />
+                        <path d="M20 12h2" />
+                        <path d="m6.34 17.66-1.41 1.41" />
+                        <path d="m19.07 4.93-1.41 1.41" />
+                    </svg>
+                    <svg id="moon-icon" style="display:none" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                    </svg>
+                </button>
+            </header>
 
-        <footer>
-            <h2>Connect</h2>
-            <ul>
-                <li><a href="https://bsky.app/profile/huebi.dev" target="_blank" rel="noreferrer">Bluesky</a></li>
-                <li><a href="https://github.com/huebicode" target="_blank" rel="noreferrer">GitHub</a></li>
-            </ul>
-            <h2>Research & Development</h2>
-            <ul>
-                <li>Master’s Thesis: <a href="/assets/thesis.pdf" target="_blank">Development of a Forensic Parser for LevelDB (2025)</a></li>
-            </ul>
-        </footer>
-    </div>
-</body>
+            <main style="max-width: 60ch;">
+                <p>Hi, I’m <b>Alexander Hübert</b></p>
+                <p><b>Independent Developer</b> & <b>Digital Forensics Analyst</b> from Germany who loves the open web and builds on Linux, primarily using Rust.</p>
+            </main>
+
+            <footer>
+                <h2>Connect</h2>
+                <ul>
+                    <li><a href="https://bsky.app/profile/huebi.dev" target="_blank" rel="noreferrer">Bluesky</a></li>
+                    <li><a href="https://github.com/huebicode" target="_blank" rel="noreferrer">GitHub</a></li>
+                </ul>
+                <h2>Research & Development</h2>
+                <ul>
+                    <li>Thesis: <a href="/assets/thesis.pdf" target="_blank">Development of a Forensic Parser for LevelDB (2025)</a></li>
+                    <li>Article: <a href="/powershell-obfuscation.html">Powershell-Obfuscation (2023)</a></li>
+                </ul>
+            </footer>
+        </div>
+    </body>
 
 </html>
